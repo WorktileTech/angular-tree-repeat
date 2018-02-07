@@ -45,6 +45,10 @@
       controller: ['$scope', '$attrs',
         function TreepeatController($scope, $attrs){
           var ident = this.ident = parseRepeatExpression($attrs.sfTreepeat);
+          if($attrs.class) {
+            this.ident.class = $attrs.class;
+            ident = this.ident;
+          }
           $log.info("Parsed '%s' as %s", $attrs.sfTreepeat, JSON.stringify(this.ident));
           // Keep the root node up to date.
           $scope.$watch(this.ident.root, function(v){
@@ -79,6 +83,7 @@
           '<', iterStartElementDOM.tagName, ' ng-repeat="',
           controller.ident.value, ' in ',
           controller.ident.value, '.', controller.ident.collection,
+          '" class="', controller.ident.class,
           '">',
           controller.template,
           '</', iterStartElementDOM.tagName, '>'];

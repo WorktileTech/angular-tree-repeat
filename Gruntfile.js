@@ -71,7 +71,7 @@ module.exports = function( grunt ) {
         codegen: {}
       },
       dist: {
-        src: [ '<%= concat.dist.dest %>' ],
+        src: [ 'src/*.js' ],
         dest: DISTDIR + '/<%= pkg.name %>.min.js'
 
       }
